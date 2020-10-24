@@ -1,6 +1,7 @@
 import Head from "next/head";
 import styled from "styled-components";
 import { SentimentAnalysis } from "../components/SentimentAnalysis";
+import { Summarize } from "../components/Summarize";
 import { TextGeneration } from "../components/TextGeneration";
 
 const Container = styled.div`
@@ -29,6 +30,7 @@ export default function Home() {
       <Main>
         <SentimentAnalysis />
         <TextGeneration />
+        <Summarize />
       </Main>
     </Container>
   );

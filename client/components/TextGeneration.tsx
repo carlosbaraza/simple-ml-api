@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import styled from "styled-components";
 import { TextareaAutosize } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import { SentimentAnalysisResults } from "./SentimentAnalysisResults";
-import { ApiSentimentAnalysisResult, fetchSentimentAnalysis } from "../services/sentiment-analysis";
+import React, { useState } from "react";
+import styled from "styled-components";
+import { ApiTextGenerationResult, fetchTextGeneration } from "../services/text-generation";
+import { TextGenerationResults } from "./TextGenerationResults";
 
 const Title = styled.h1`
   margin: 0;
@@ -39,11 +39,11 @@ const Textarea = styled(TextareaAutosize)`
   width: 100%;
 `;
 
-export const SentimentAnalysis = (props) => {
+export const TextGeneration = (props) => {
   const [text, setText] = useState(
-    "We are very happy to include pipeline into the transformers repository."
+    "Once upon a time there was a king’s daughter, who was so handsome, there was nothing in the world to be compared with her for beauty. One day"
   );
-  const [result, setResult] = useState<ApiSentimentAnalysisResult>(null);
+  const [result, setResult] = useState<ApiTextGenerationResult>(null);
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (e?) => {
@@ -52,7 +52,7 @@ export const SentimentAnalysis = (props) => {
     if (loading) return;
     setLoading(true);
 
-    const response = await fetchSentimentAnalysis(text);
+    const response = await fetchTextGeneration(text);
     setResult(response);
     setLoading(false);
   };
@@ -65,7 +65,7 @@ export const SentimentAnalysis = (props) => {
 
   return (
     <Container>
-      <Title>Sentiment analysis</Title>
+      <Title>Text Generation</Title>
       <Form onSubmit={onSubmit}>
         <Textarea
           rowsMin={2}
@@ -74,10 +74,10 @@ export const SentimentAnalysis = (props) => {
           onKeyDown={onKeyDown}
         />
         <Button type="submit" variant="contained" color="primary" disabled={loading}>
-          {loading ? "Loading..." : "Analyze"}
+          {loading ? "Loading..." : "Generate more text"}
         </Button>
       </Form>
-      <SentimentAnalysisResults loading={loading} result={result} />
+      <TextGenerationResults loading={loading} result={result} />
     </Container>
   );
 };

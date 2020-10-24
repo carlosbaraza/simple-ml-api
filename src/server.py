@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from inference import sentiment_analysis
+from inference import sentiment_analysis, text_generation
 from flask_cors import CORS, cross_origin
 import json
 
@@ -10,8 +10,15 @@ cors = CORS(app)
 
 @app.route('/sentiment-analysis', methods=['POST'])
 @cross_origin()
-def hello_world():
+def sentiment_analysis_post():
     data = request.json
-    print(data)
     result = sentiment_analysis(data['text'])
+    return jsonify(result)
+
+
+@app.route('/text-generation', methods=['POST'])
+@cross_origin()
+def text_generation_post():
+    data = request.json
+    result = text_generation(data['text'])
     return jsonify(result)

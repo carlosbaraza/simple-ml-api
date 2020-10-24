@@ -1,6 +1,7 @@
 import Head from "next/head";
 import styled from "styled-components";
 import { SentimentAnalysis } from "../components/SentimentAnalysis";
+import { TextGeneration } from "../components/TextGeneration";
 
 const Container = styled.div`
   min-height: 100vh;
@@ -11,6 +12,10 @@ const Container = styled.div`
 const Main = styled.main`
   display: flex;
   flex-direction: column;
+
+  > * + * {
+    margin-top: 20px;
+  }
 `;
 
 export default function Home() {
@@ -23,6 +28,7 @@ export default function Home() {
 
       <Main>
         <SentimentAnalysis />
+        <TextGeneration />
       </Main>
     </Container>
   );

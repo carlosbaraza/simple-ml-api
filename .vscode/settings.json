@@ -1,6 +1,6 @@
 {
   "python.venvFolders": ["/Users/carlosbaraza/dev/transformers-test/venv"],
   "python.venvPath": "~/.pyenv",
-  "python.pythonPath": "/Users/carlosbaraza/dev/transformers-test/env/bin/python3",
-  "python.linting.enabled": false
+  "python.pythonPath": "venv/bin/python",
+  "python.linting.enabled": true
 }

@@ -1,7 +1,7 @@
 import { CircularProgress } from "@material-ui/core";
 import React, { FC } from "react";
 import styled from "styled-components";
-import { ApiSentimentAnalysisResult } from "../services/sentiment-analysis";
+import { ApiTextGenerationResult } from "../services/text-generation";
 
 const Container = styled.div`
   display: flex;
@@ -27,31 +27,21 @@ const Title = styled.h3`
 
 type Props = {
   loading: boolean;
-  result?: ApiSentimentAnalysisResult;
+  result?: ApiTextGenerationResult;
 };
 
-export const SentimentAnalysisResults: FC<Props> = (props) => {
+export const TextGenerationResults: FC<Props> = (props) => {
   const { loading, result } = props;
 
   if (!loading && !result) return null;
 
-  const label = result?.[0]?.label;
-  const score = result?.[0]?.score;
+  const generatedText = result?.[0]?.generated_text;
 
   return (
     <Container>
-      <Title>Results</Title>
+      <Title>Generated text</Title>
 
-      <Inner>
-        {loading ? (
-          <CircularProgress />
-        ) : (
-          <div>
-            <div>Label: {label}</div>
-            <div>Score: {score}</div>
-          </div>
-        )}
-      </Inner>
+      <Inner>{loading ? <CircularProgress /> : <div>{generatedText}</div>}</Inner>
     </Container>
   );
 };
